@@ -111,7 +111,7 @@
         <OOBE>
             <HideEULAPage>true</HideEULAPage>
             <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
-            <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+            <!--<HideOnlineAccountScreens>true</HideOnlineAccountScreens>-->
             <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
             <NetworkLocation>Work</NetworkLocation>
             <ProtectYourPC>3</ProtectYourPC>
@@ -237,10 +237,10 @@ Where-Object -Property 'FeatureName' -In -Value @(
 <!--Local Machine Registry Entries - This Sets Features for the Local Machine-->
 <File path="C:\Windows\Setup\Scripts\localmachine.cmd">
 :: Bypasses Microsoft Account Creation
-reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v BypassNRO /t REG_DWORD /d 1 /f
+:: reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v BypassNRO /t REG_DWORD /d 1 /f
 
 :: Disables User Account Control
-reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableLUA /t REG_DWORD /d 0 /f
+:: reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableLUA /t REG_DWORD /d 0 /f
 
 :: Disable Windows Spotlight and set the normal Windows Picture as the desktop background
 :: Disable Windows Spotlight on the lock screen
@@ -394,7 +394,7 @@ reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v DisableFileSy
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\PushToInstall" /v "DisablePushToInstall" /t REG_DWORD /d 1 /f
 
 :: Disables Consumer Account State Content
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v "DisableConsumerAccountStateContent" /t REG_DWORD /d 1 /f
+:: reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v "DisableConsumerAccountStateContent" /t REG_DWORD /d 1 /f
 
 :: Disables Cloud Optimized Content
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v "DisableCloudOptimizedContent" /t REG_DWORD /d 1 /f
@@ -434,7 +434,7 @@ New-Item -Path $path -ItemType File -Force
 $content | Out-File -FilePath $path -Encoding UTF8 -Force
 
 # Configure Maximum Password Age in Windows
-net.exe accounts /maxpwage:UNLIMITED
+:: net.exe accounts /maxpwage:UNLIMITED
 
 # Allow Execution of PowerShell Script Files
 Set-ExecutionPolicy -Scope 'LocalMachine' -ExecutionPolicy 'RemoteSigned' -Force
@@ -929,10 +929,10 @@ reg.exe add "HKU\DefaultUser\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" 
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" /v ToastEnabled /t REG_DWORD /d 0 /f
 
 :: Disables User Account Control
-reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v UserAccountControlSettings /t REG_DWORD /d 0 /f
+:: reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v UserAccountControlSettings /t REG_DWORD /d 0 /f
 
 :: Disables User Account Sync
-reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v SettingSyncEnabled /t REG_DWORD /d 0 /f
+:: reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v SettingSyncEnabled /t REG_DWORD /d 0 /f
 
 :: Disables Location Services
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v LocationServicesEnabled /t REG_DWORD /d 0 /f
@@ -968,7 +968,7 @@ reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryO
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v TabletMode /t REG_DWORD /d 0 /f
 
 :: Disables Use Sign-In Info for User Account
-reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication" /v UseSignInInfo /t REG_DWORD /d 0 /f
+:: reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication" /v UseSignInInfo /t REG_DWORD /d 0 /f
 
 :: Disables Maps Auto Download
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Maps" /v AutoDownload /t REG_DWORD /d 0 /f
@@ -1182,10 +1182,10 @@ reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" /v ToastEnabled /t REG_DWORD /d 0 /f
 
 :: Disables User Account Control
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v UserAccountControlSettings /t REG_DWORD /d 0 /f
+:: reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v UserAccountControlSettings /t REG_DWORD /d 0 /f
 
 :: Disables User Account Sync
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v SettingSyncEnabled /t REG_DWORD /d 0 /f
+:: reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v SettingSyncEnabled /t REG_DWORD /d 0 /f
 
 :: Disables Location Services
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v LocationServicesEnabled /t REG_DWORD /d 0 /f
@@ -1221,7 +1221,7 @@ reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Deliver
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v TabletMode /t REG_DWORD /d 0 /f
 
 :: Disables Use Sign-In Info for User Account
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication" /v UseSignInInfo /t REG_DWORD /d 0 /f
+:: reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication" /v UseSignInInfo /t REG_DWORD /d 0 /f
 
 :: Disables Maps Auto Download
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Maps" /v AutoDownload /t REG_DWORD /d 0 /f
